@@ -1,18 +1,20 @@
 #include <stdio.h>
 #include "myBank.h"
 #include <math.h>
-#define NUMACCOUNTS 50;//a constant that save the array size
+#define NUMACCOUNTS 50//a constant that save the array size
+#define AMOUNTSTATUS 2//a constant that save the account's status
+
+double bank[AMOUNTSTATUS][NUMACCOUNTS]={0};//initial a bank accounts, in raw 0 - will save the amount and raw 1 will save the status of the account(close/open).
+
 
 void twodigits(double x);//a void function that gets a double and make it at most with 2 digits after the point.
-
-double bank[2][50]={0};//initial a bank accounts, in raw 0 - will save the amount and raw 1 will save the status of the account(close/open).
 
 
 enum flag{false,true};//a new type variable for knowing if the accounts have been opened or no.
 
 void newAccount(double amount){
     enum flag opened=false;
-    for(int i = 0; i < 50; i++){
+    for(int i = 0; i < NUMACCOUNTS; i++){
         if(bank[1][i]==0){
             bank[0][i]=amount;
             twodigits(bank[0][i]);//for 2 digits after the point.
@@ -100,7 +102,7 @@ void closeAccount(int accountNum){
 }
 void interestRate(double rate){
     rate=1+(rate/100);//a number that we will multiply with the amount of each account.(for get the right rate)
-    for(int i=0;i<50;i++){
+    for(int i=0;i<NUMACCOUNTS;i++){
         if(bank[1][i]==1){
             bank[0][i]=(bank[0][i])*rate;
             twodigits(bank[0][i]);//for 2 digits fater the point.
@@ -109,14 +111,14 @@ void interestRate(double rate){
     }
 }
 void accountsDetails(){
-    for(int i=0;i<50;i++){
+    for(int i=0;i<NUMACCOUNTS;i++){
         if(bank[1][i]==1){//enter only to opened accounts.
             printf("account number %d balance:%0.2lf\n",i+901,bank[0][i]);
         }
     }
 }
 void closeAll(){
-    for(int i=0;i<50;i++){
+    for(int i=0;i<NUMACCOUNTS;i++){
         if(bank[1][i]==1){//all the opened accounts will closed.
             bank[1][i]=0;
             bank[0][i]=0;

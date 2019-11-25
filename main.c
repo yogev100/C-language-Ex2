@@ -4,8 +4,6 @@
 
 enum bool{no,yes};//a new type variable for knowing when to close all the accounts.
 
-
-
 int main(){
     enum bool exit=no;
 
