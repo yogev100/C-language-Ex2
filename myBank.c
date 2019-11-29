@@ -1,16 +1,14 @@
 #include <stdio.h>
 #include "myBank.h"
 #include <math.h>
-#define NUMACCOUNTS 50//a constant that save the array size
-#define AMOUNTSTATUS 2//a constant that save the account's status
+// #define NUMACCOUNTS 50//a constant that save the array size
+// #define AMOUNTSTATUS 2//a constant that save the account's status
 
 double bank[AMOUNTSTATUS][NUMACCOUNTS]={0};//initial a bank accounts, in raw 0 - will save the amount and raw 1 will save the status of the account(close/open).
 
+enum flag{false,true};//a new type variable for knowing if the accounts have been opened or no.
 
 void twodigits(double x);//a void function that gets a double and make it at most with 2 digits after the point.
-
-
-enum flag{false,true};//a new type variable for knowing if the accounts have been opened or no.
 
 void newAccount(double amount){
     enum flag opened=false;
